@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Formulario de Registro de DotOffice</title>
+	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <main>
+        <center><h2 class="text-center text-primary">Formulario</h2></center>
+        <form action="" class="formulario" id="formulario">
+            <!-- grupo: Nombres -->
+            <div class="formulario__grupo" id="grupo__Nombres">
+                <label for="Nombres" class="formulario__label">Nombres</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="Nombres" id="Nombres" placeholder="Ingrese sus Nombres">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">Escriba sus Nombres por favor.</p>
+            </div>
+
+            <!-- grupo: Apellidos -->
+            <div class="formulario__grupo" id="grupo__Apellidos">
+                <label for="Apellidos" class="formulario__label">Apellidos</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="Apellidos" id="Apellidos" placeholder="Ingrese sus Apellidos">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">Escriba sus Apellidos por favor.</p>
+            </div>
+        
+            <!-- grupo: Contraseña -->
+            <div class="formulario__grupo" id="grupo__Password">
+                <label for="Password" class="formulario__label">Contraseña</label>
+                <div class="formulario__grupo-input">
+                    <input type="password" class="formulario__input" name="Password" id="Password">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">La Contraseña tiene que ser de 4 a 12 digitos.</p>
+            </div>
+
+            <!-- grupo: Contraseña 2 -->
+            <div class="formulario__grupo" id="grupo__Password2">
+                <label for="Password2" class="formulario__label">Repetir Contraseña</label>
+                <div class="formulario__grupo-input">
+                    <input type="password" class="formulario__input" name="Password2" id="Password2">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">Ambas contraseñas tienen que ser iguales.</p>
+            </div>
+
+            <!-- grupo: Correo Electronico -->
+            <div class="formulario__grupo" id="grupo__Correo">
+                <label for="Correo" class="formulario__label">Correo Electrónico</label>
+                <div class="formulario__grupo-input">
+                    <input type="email" class="formulario__input" name="Correo" id="Correo" placeholder="Correo@gmail.com">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+            </div>
+
+            <!-- grupo: Categoria -->
+            <div class="formulario__grupo" id="grupo__Categoria">
+                <label for="Categoria" class="formulario__label">Categoria</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="Categoria" id="Categoria" placeholder="Individual o Corporativo">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">Elija si es Individual o Corporativo.</p>
+            </div>
+
+            <!-- grupo: Terminos y Condiciones -->
+            <div class="formulario__grupo" id="grupo__Terminos">
+                <input id="egreso" type="radio" name="transactionType" value="egr" required>
+                <label for="egreso">Acepto Terminos y Condiciones</label>
+                </label>
+            </div>
+
+            <div class="formulario__mensaje" id="formulario__mensaje">
+				<p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor complete el formulario correctamente. </p>
+            </div>
+
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                <button type="submit" class="formulario__btn">Enviar</button>
+                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+            </div>
+        </form>
+    </main>
+
+	<script src="js/formulario.js"></script>
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+
+    <div class="tableFormat">
+        <Table id="transactionTable">
+            <Tr>
+                <th>
+                    Nombres
+                </th>
+                <th>
+                    Apellidos
+                </th>
+                <th>
+                    Contraseña
+                </th>
+                <th>
+                    Repetir Contraseña
+                </th>
+                <th>
+                    Correo Electronico 
+                </th>
+                <th>
+                    Categoria
+                </th>
+
+            </tr>
+
+        </Table>
+    </div>
+
+    <script>
+        const form = document.getElementById("formulario");
+
+        form.addEventListener("submit", function(event){
+            event.preventDefault();
+            let transactionFormData = new FormData(form);
+            let transactionTableRef = document.getElementById("transactionTable");
+            let newTransactionRowRef = transactionTableRef.insertRow(-1);
+
+            let newTypeCellRef = newTransactionRowRef. insertCell(0);
+            newTypeCellRef.textContent = transactionFormData.get("Nombres")
+
+            newTypeCellRef = newTransactionRowRef. insertCell(1);
+            newTypeCellRef.textContent = transactionFormData.get("Apellidos")
+
+            newTypeCellRef = newTransactionRowRef. insertCell(2);
+            newTypeCellRef.textContent = transactionFormData.get("Password")
+
+            newTypeCellRef = newTransactionRowRef. insertCell(3);
+            newTypeCellRef.textContent = transactionFormData.get("Password2")
+
+            newTypeCellRef = newTransactionRowRef. insertCell(4);
+            newTypeCellRef.textContent = transactionFormData.get("Correo")
+
+            newTypeCellRef = newTransactionRowRef. insertCell(5);
+            newTypeCellRef.textContent = transactionFormData.get("Categoria")
+
+
+        })
+    </script>
+
+    <style>
+        td,
+        th{
+            text-align: center;
+            padding: 10px;
+            border: solid red 2px;
+        }
+
+        .tableFormat table {
+            margin: 10px auto;
+        }
+
+        .formField {
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</body>
+</html>
